@@ -1,0 +1,92 @@
+## 1 ENVIRONMENT SETUP (WSL & UBUNTU)
+
+# Open and close Ubuntu
+wsl
+exit
+
+# Fully shut down WSL (run in Windows PowerShell)
+wsl --shutdown
+
+# Update Ubuntu packages
+sudo apt update && sudo apt upgrade -y
+
+## 2 DOCKER SETUP AND USAGE
+
+# Check Docker version
+docker --version
+
+# Test installation
+docker run hello-world
+
+# List running containers / all containers
+docker ps
+docker ps -a
+
+# List images
+docker images
+
+# Stop / remove container
+docker stop <container_id>
+docker rm <container_id>
+
+# Fix permission error (run once)
+sudo usermod -aG docker $USER
+newgrp docker
+
+
+## 3 GIT AND GITHUB BASICS
+
+# Configure Git identity
+git config --global user.name "Seshagiri"
+git config --global user.email "your_email@example.com"
+
+# Initialize repo
+git init
+
+# Stage and commit changes
+git add .
+git commit -m "Initial commit"
+
+# Link to GitHub (HTTPS)
+git remote add origin https://github.com/SomepalliSeshagiri/cineworld-devops.git
+git branch -M main
+git push -u origin main
+
+# Normal push afterwards
+git add .
+git commit -m "message"
+git push
+
+# Store credentials to avoid re-entering token
+git config --global credential.helper store
+
+
+## 4 FLODER STRUCTURE (REPOSITORY LAYOUT)
+
+cineworld-devops/
+├── backend/      → microservice code
+├── frontend/     → UI
+├── database/     → DB setup / scripts
+├── scripts/      → CI/CD or automation scripts
+├── .gitignore
+└── README.md
+
+# use .gitkeep inside empty folders so Git tracks them
+
+
+## 5 USEFUL COMMANDS AND SHORTCUTS
+
+# Move to home directory
+cd ~
+
+# List hidden files
+ls -a
+
+# Display directory tree
+sudo apt install tree -y
+tree -L 2
+
+# Show recent commands
+history | tail -20
+
+
