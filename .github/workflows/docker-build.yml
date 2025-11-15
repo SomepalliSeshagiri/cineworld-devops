@@ -21,9 +21,10 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Build and Push
+    - name: Build and Push backend image
       uses: docker/build-push-action@v6
       with:
         context: ./backend
+        file: ./backend/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/cineworld-backend:latest
