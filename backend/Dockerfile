@@ -1,20 +1,18 @@
-# 1️⃣  Base Image
-FROM node:18
+# Backend Dockerfile for CineWorld DevOps project
+FROM node:18-alpine
 
-# 2️⃣  Working Directory
+# Set working directory inside container
 WORKDIR /app
 
-# 3️⃣  Copy Dependency Files
+# Copy package files first
 COPY package*.json ./
 
-# 4️⃣  Install Dependencies
+# Install dependencies
 RUN npm install
 
-# 5️⃣  Copy Remaining Application Files
+# Copy the rest of the source code
 COPY . .
 
-# 6️⃣  Expose App Port
+# Expose port and start app
 EXPOSE 3000
-
-# 7️⃣  Default Command to Run the App
 CMD ["node", "server.js"]
