@@ -68,3 +68,26 @@ jobs:
           git push origin ${{ env.NEW_VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        if: success()
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.NEW_VERSION }}
+          name: Release ${{ env.NEW_VERSION }}
+          body: |
+            🚀 **New Backend Docker Image Released!**
+            
+            **Version:** ${{ env.NEW_VERSION }}
+            **Docker Tags:**
+            - `latest`
+            - `${{ env.NEW_VERSION }}`
+            - `${{ env.TAG_DATE }}`
+            - `${{ env.TAG_SHA }}`
+            
+            **Docker Image:**
+            ```
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cineworld-backend:${{ env.NEW_VERSION }}
+            ```
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
